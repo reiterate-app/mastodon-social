@@ -13,5 +13,5 @@ def require_all(group)
   end
 end
 
-require_all "commands"
-require_all "generators"
+require_all "jekyll/commands"
+require_all "jekyll/generators"
