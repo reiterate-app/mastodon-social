@@ -62,6 +62,9 @@ module Jekyll
           post_url = post
           excerpt = ''
         else
+          # Don't do anything with posts that are in _drafts
+          return if post.path.include? '_drafts'
+
           post_url = post.url
           excerpt_html = post.data['excerpt'].to_s
           excerpt = Nokogiri::HTML(excerpt_html).text.strip
