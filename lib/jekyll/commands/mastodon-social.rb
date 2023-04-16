@@ -100,7 +100,12 @@ module Jekyll
           for post_url, status in MastodonSocial.mastodon_status
             next if status[:mastodon_status]
             puts "Publishing #{post_url} to Mastodon"
-            msg_text = "#{MastodonSocial.site.config["url"]}#{post_url}\n\n#{status[:excerpt]}"
+            msg_text = <<~ENDMSG
+            #{MastodonSocial.site.config["url"]}#{post_url}
+
+            #{status[:excerpt]}
+            ENDMSG
+            msg_text += ("\n#" + status[:hashtags].join(' #')) if status[:hashtags]
             status_result = client.create_status(msg_text)
             new_status = {id: status_result.id, url: status_result.url}
             MastodonSocial.mark_as_published(post_url, new_status)

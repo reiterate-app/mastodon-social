@@ -56,11 +56,12 @@ module Jekyll
       # mastodon_status is one of:
       # nil: this post has not been sent to mastodon
       # true: This post has been sent as a status, but we have no url
-      # url: THe Mastodon URL for the status linking this post
+      # url: The Mastodon URL for the status linking this post
       def mark_as_published(post, mastodon_status)
         if post.kind_of? String
           post_url = post
           excerpt = ''
+          hashtags = nil
         else
           # Don't do anything with posts that are in _drafts
           return if post.path.include? '_drafts'
@@ -68,12 +69,15 @@ module Jekyll
           post_url = post.url
           excerpt_html = post.data['excerpt'].to_s
           excerpt = Nokogiri::HTML(excerpt_html).text.strip
+          hashtags = post.data['hashtags']
+          hashtags = hashtags.split if hashtags.is_a? String
         end
         status = @mastodon_status[post_url]
         if status.nil?
           @mastodon_status[post_url] = { 
             mastodon_status: mastodon_status,
-            excerpt: excerpt
+            excerpt: excerpt,
+            hashtags: hashtags
           }
         else
           status[:mastodon_status] = mastodon_status
