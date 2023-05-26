@@ -101,9 +101,9 @@ module Jekyll
             next if status[:mastodon_status]
             puts "Publishing #{post_url} to Mastodon"
             msg_text = <<~ENDMSG
-            #{MastodonSocial.site.config["url"]}#{post_url}
+            #{status[:excerpt].gsub("\n", '')}
 
-            #{status[:excerpt]}
+            #{MastodonSocial.site.config["url"]}#{post_url}
             ENDMSG
             msg_text += ("\n#" + status[:hashtags].join(' #')) if status[:hashtags]
             status_result = client.create_status(msg_text)
