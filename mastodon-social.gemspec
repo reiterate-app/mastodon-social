@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Create links for a Jekyll blog that allow reposting on Mastodon"
   spec.description = "Add mastodon social links"
   spec.required_ruby_version = ">= 2.6.0"
+  spec.add_runtime_dependency 'mastodon-api', '~> 2.0'
 
 
   # Specify which files should be added to the gem when it is released.
