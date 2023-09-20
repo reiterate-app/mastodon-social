@@ -57,7 +57,7 @@ the block, like so:
 ```html
 {% mastodon_social %}
 Boost this on Mastodon!
-{% end_mastodon_social %}
+{% endmastodon_social %}
 ```
 
 ### Setup and Authorization
