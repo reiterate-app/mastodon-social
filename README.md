@@ -12,6 +12,18 @@ In your `Gemfile` add:
  end
 ```
 
+The `mastodon-social` gem depends on `mastodon-api`. However, as of September 2023, `mastodon-api` has not been pushed to
+RubyGems in over three years. This means if you just pull in the default version of the gem, it will be out of date and will
+give you strange errors because all its dependencies are old.
+
+The version of `mastodon-api` on GitHub has been updated; it just hasn't been pushed to RubyGems. You will need to pull
+`mastodon-api` directly from GitHub instead of RubyGems. To do this, add this line in your `Gemfile` directly under where
+you are importing `mastodon-social`:
+
+```ruby
+  gem 'mastodon-api', :git => 'git://github.com/mastodon/mastodon-api.git'
+```
+
 ## Usage
 
 The plugin will add a new `mastodon` command to your jekyll setup:
