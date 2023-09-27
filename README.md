@@ -21,7 +21,7 @@ The version of `mastodon-api` on GitHub has been updated; it just hasn't been pu
 you are importing `mastodon-social`:
 
 ```ruby
-  gem 'mastodon-api', :git => 'git://github.com/mastodon/mastodon-api.git'
+  gem 'mastodon-api', :git => 'https://github.com/mastodon/mastodon-api.git'
 ```
 
 ## Usage
@@ -157,6 +157,10 @@ and boost your post) then you'll need to build your blog *twice*:
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+To install without bundle (eg from a raw repository), update `lib/version.rb` to the new version number, commit your changes,
+and create a new tag in git. Push the changes with `--tags` to GitHub. Then run `rake install` to build the new gem package, and
+`gem push pkg/<packagename>` to publish it to RubyGems. Lastly, create a new release on GitHub with the same version number.
 
 ## Contributing
 
