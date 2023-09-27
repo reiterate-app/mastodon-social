@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 # We require the latest mastodon-api, since it updated its http dependency to 4.0, but it hasn't been published
-gem "mastodon-api", :git => "git://github.com/mastodon/mastodon-api"
+gem "mastodon-api", :git => "https://github.com/mastodon/mastodon-api"
 
 gem "rake", "~> 13.0"
 

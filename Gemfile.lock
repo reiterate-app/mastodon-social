@@ -1,22 +1,55 @@
+GIT
+  remote: https://github.com/mastodon/mastodon-api
+  revision: 60b0ed09c3b979cbeb833db0a320b30e1b022a1e
+  specs:
+    mastodon-api (2.0.0)
+      addressable (~> 2.6)
+      buftok (~> 0)
+      http (~> 4.0)
+      oj (~> 3.7)
+
 PATH
   remote: .
   specs:
-    mastodon-social (0.1.0)
+    mastodon-social (0.1.2)
+      http (~> 4.4)
+      mastodon-api (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.5)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    buftok (0.3.0)
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    ffi (1.16.2)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
+    http (4.4.1)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      http-parser (~> 1.2.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
+    http-parser (1.2.3)
+      ffi-compiler (>= 1.0, < 2.0)
     io-console (0.6.0)
     irb (1.6.2)
       reline (>= 0.3.0)
     json (2.6.3)
+    oj (3.16.1)
     parallel (1.22.1)
     parser (3.2.0.0)
       ast (~> 2.4.1)
+    public_suffix (5.0.3)
     rainbow (3.1.1)
     rake (13.0.6)
     regexp_parser (2.6.1)
@@ -36,13 +69,18 @@ GEM
     rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
 
 PLATFORMS
+  arm64-darwin-22
   x86_64-darwin-21
 
 DEPENDENCIES
   debug
+  mastodon-api!
   mastodon-social!
   rake (~> 13.0)
   rubocop (~> 1.21)
