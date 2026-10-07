@@ -2,6 +2,7 @@
 
 require "jekyll"
 require_relative "version"
+require_relative "client"
 require 'nokogiri'
 require 'debug'
 
@@ -27,9 +28,6 @@ module Jekyll
         @bearer_token = cache_data[:bearer_token]
         @client_id = cache_data[:client_id]
         @client_secret = cache_data[:client_secret]
-
-        @mastodon_client = Mastodon::REST::Client.new(base_url: @config["server"],
-          bearer_token: @bearer_token)
       end
 
       def setup_config

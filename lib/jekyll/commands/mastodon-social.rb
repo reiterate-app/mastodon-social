@@ -1,4 +1,3 @@
-require 'mastodon'
 require 'io/console'
 require 'net/http'
 require 'uri'
@@ -41,8 +40,8 @@ module Jekyll
         def create_client_id(options = {})
           client = get_client()
           app = client.create_app("jekyll-social", MastodonSocial.site.config["url"], 'read write')
-          MastodonSocial.client_id = app.client_id
-          MastodonSocial.client_secret = app.client_secret
+          MastodonSocial.client_id = app['client_id']
+          MastodonSocial.client_secret = app['client_secret']
           MastodonSocial.save_config()
         end
 
@@ -91,7 +90,7 @@ module Jekyll
           options = configuration_from_options(options)
           site = Jekyll::Site.new(options)
           MastodonSocial.setup(site)
-          return Mastodon::REST::Client.new(base_url: MastodonSocial.config["server"], bearer_token: MastodonSocial.bearer_token)
+          return Client.new(base_url: MastodonSocial.config["server"], bearer_token: MastodonSocial.bearer_token)
         end
 
         # Look for any blog posts that haven't been sent to Mastodon, and post a status for each
@@ -107,9 +106,11 @@ module Jekyll
             ENDMSG
             msg_text += ("\n#" + status[:hashtags].join(' #')) if status[:hashtags]
             status_result = client.create_status(msg_text)
-            new_status = {id: status_result.id, url: status_result.url}
+            new_status = {id: status_result['id'], url: status_result['url']}
             MastodonSocial.mark_as_published(post_url, new_status)
           end
+        ensure
+          # Save even if a post fails, so the ones that went out aren't sent again next time
           MastodonSocial.save_config()
         end
         
